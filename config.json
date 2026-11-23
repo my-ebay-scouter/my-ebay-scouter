@@ -1,0 +1,50 @@
+{
+  "marketplace_id": "EBAY_US",
+  "daily_limit_per_category": 20,
+  "target_profit_yen": 5000,
+  "max_purchase_yen": 30000,
+  "fx_jpy_per_usd": 150,
+  "fee_rate": 0.15,
+  "payment_cost_yen": 500,
+  "international_shipping_yen": 2500,
+  "packing_other_yen": 500,
+  "seller_tariff_yen": 0,
+  "categories": [
+    {
+      "name": "腕時計",
+      "ebay_category_id": "",
+      "keywords": [
+        "Seiko watch",
+        "Citizen watch",
+        "Casio watch"
+      ]
+    },
+    {
+      "name": "カメラ・光学機器",
+      "ebay_category_id": "",
+      "keywords": [
+        "Canon lens",
+        "Nikon lens",
+        "Sony camera lens"
+      ]
+    },
+    {
+      "name": "オーディオ",
+      "ebay_category_id": "",
+      "keywords": [
+        "cassette deck",
+        "portable cassette player",
+        "vintage audio"
+      ]
+    },
+    {
+      "name": "天体望遠鏡",
+      "ebay_category_id": "",
+      "keywords": [
+        "telescope",
+        "Celestron telescope",
+        "Vixen telescope"
+      ]
+    }
+  ]
+}
