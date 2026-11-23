@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101b35">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="eBay SCOUTER">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>MY eBay SCOUTER</title>
+<style>
+:root{--bg:#f3f5f9;--card:#fff;--ink:#172033;--muted:#667085;--line:#e3e8f0;--blue:#2457d6;--green:#087647;--red:#b42318}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;padding-bottom:env(safe-area-inset-bottom)}
+header{background:#101b35;color:white;padding:calc(18px + env(safe-area-inset-top)) 18px 18px}header small{color:#b9c7e6;letter-spacing:.12em}h1{font-size:23px;margin:4px 0}header p{margin:0;color:#d0d9eb;font-size:13px}
+main{max-width:760px;margin:auto;padding:14px}.stats{display:grid;grid-template-columns:1fr 1fr;gap:9px}.stat,.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}.stat small{display:block;color:var(--muted)}.stat b{font-size:20px}
+.tabs{display:flex;gap:7px;margin:14px 0;position:sticky;top:0;background:var(--bg);padding:5px 0;z-index:2}.tab{flex:1;padding:10px 4px;border:1px solid var(--line);background:white;border-radius:10px;font-weight:700;color:var(--ink)}.tab.on{background:var(--blue);color:white;border-color:var(--blue)}
+.panel{display:none}.panel.on{display:block}h2{font-size:17px;margin:0 0 10px}.muted,.hint{font-size:12px;color:var(--muted)}.field{margin:10px 0}.field label{display:block;font-size:13px;font-weight:700;margin-bottom:5px}input,select{width:100%;padding:12px;border:1px solid #cbd3df;border-radius:9px;background:white;font:inherit;color:var(--ink)}.grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.full{grid-column:1/-1}
+button{font:inherit;font-weight:700;border:0;border-radius:10px;padding:12px;background:var(--blue);color:white;cursor:pointer}.secondary{background:#edf2ff;color:#2448a5;border:1px solid #d8e1ff}.danger{background:#fff0ef;color:var(--red);border:1px solid #ffd6d2}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.actions button{flex:1;min-width:110px}
+.result{background:#f5f8ff;border:1px solid #dce5ff;border-radius:12px;padding:14px;margin-top:14px}.big{font-size:28px;font-weight:800}.good{color:var(--green)}.bad{color:var(--red)}.pill{display:inline-block;background:#edf1f6;border-radius:20px;padding:4px 9px;font-size:12px;font-weight:700}.notice{font-size:12px;background:#fff8e8;color:#79520a;padding:10px;border-radius:8px;margin-top:10px}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{text-align:left;padding:9px 5px;border-bottom:1px solid var(--line)}.tablewrap{overflow:auto}.saveditem{padding:10px 0;border-bottom:1px solid var(--line)}footer{font-size:11px;color:var(--muted);padding:18px 4px}
+@media(max-width:420px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.tabs{gap:5px}.tab{font-size:13px}}
+</style>
+</head>
+<body>
+<header><small>PERSONAL SOURCING ASSISTANT · PWA</small><h1>MY eBay SCOUTER</h1><p>国内仕入れ候補をeBay輸出の利益目線でチェック</p></header>
+<main>
+<div class="stats"><div class="stat"><small>仕入れ予算上限</small><b>¥30,000</b></div><div class="stat"><small>目標利益</small><b>¥5,000+</b></div></div>
+<div class="tabs"><button class="tab on" data-page="calcPage">利益計算</button><button class="tab" data-page="savedPage">保存商品</button><button class="tab" data-page="helpPage">使い方</button></div>
+<section id="calcPage" class="panel on">
+<div class="card"><h2>① 国内仕入れ商品</h2><div class="field"><label>商品URL</label><input id="url" type="url" placeholder="メルカリ・Yahoo!フリマ・ヤフオクのURL"></div><button id="detect" class="secondary">仕入れ元を判定</button> <span id="source" class="pill">未判定</span>
+<div class="grid"><div class="field"><label>商品名</label><input id="name" placeholder="商品名"></div><div class="field"><label>ジャンル</label><select id="category"><option>腕時計</option><option>カメラ・光学機器</option><option>オーディオ</option><option>天体望遠鏡</option><option>その他</option></select></div><div class="field"><label>仕入れ価格（円）</label><input id="buy" type="number" value="10000" min="0"></div><div class="field"><label>商品の状態</label><select id="condition"><option>新品・未使用</option><option selected>中古・良好</option><option>傷や汚れあり</option><option>ジャンク・要修理</option></select></div></div>
+<div class="notice">URLから仕入れ先ドメインを判定します。商品名・価格の自動取得は未対応のため、商品ページを確認して入力してください。</div></div>
+<div class="card" style="margin-top:12px"><h2>② eBay販売・費用条件</h2><div class="grid">
+<div class="field"><label>販売価格（USD）</label><input id="usd" type="number" value="180" step=".01" min="0"></div>
+<div class="field"><label>為替（円/USD）</label><input id="fx" type="number" value="150" step=".01" min="0"></div>
+<div class="field"><label>販売手数料（%）</label><input id="fee" type="number" value="15" step=".1" min="0"></div>
+<div class="field"><label>決済・為替コスト（円）</label><input id="payment" type="number" value="500" min="0"></div>
+<div class="field"><label>国際送料（円）</label><input id="shipping" type="number" value="2500" min="0"></div>
+<div class="field"><label>梱包・その他（円）</label><input id="other" type="number" value="500" min="0"></div>
+<div class="field"><label>販売先</label><select id="country"><option>米国</option><option>英国</option><option>EU</option><option>カナダ</option><option>オーストラリア</option><option>その他</option></select></div>
+<div class="field"><label>関税等の負担</label><select id="tariffMode"><option value="buyer">バイヤー負担</option><option value="seller">セラー負担（DDP等）</option></select></div>
+<div class="field full"><label>セラー負担の関税・輸入税・通関費用（円）</label><input id="tariff" type="number" value="0" min="0"></div></div>
+<div class="notice">関税は国・品目・原産国・配送条件で異なります。自動税率判定はせず、セラー負担分を手入力します。バイヤー負担の場合は利益計算から除外します。</div>
+<div class="actions"><button id="calculate">利益を計算</button><button id="save" class="secondary">商品を保存</button><button id="reset" class="secondary">リセット</button></div>
+<div class="result"><div style="display:flex;justify-content:space-between;align-items:center"><b>概算利益</b><span id="decision" class="pill">未計算</span></div><div id="profit" class="big">—</div><div class="grid"><div><span class="hint">目標利益5,000円の仕入れ上限</span><div id="limit"><b>—</b></div></div><div><span class="hint">利益率（売上換算）</span><div id="margin"><b>—</b></div></div></div><p id="breakdown" class="hint">計算結果がここに表示されます。</p></div></div>
+</section>
+<section id="savedPage" class="panel"><div class="card"><h2>保存商品</h2><div id="savedList" class="muted">保存商品はありません。</div><div class="actions"><button id="clear" class="danger">保存商品を全削除</button></div></div></section>
+<section id="helpPage" class="panel"><div class="card"><h2>使い方・対応範囲</h2><p>対応URL判定：メルカリ、Yahoo!フリマ、ヤフオク。ラクマ・Amazon・楽天は参考判定です。</p><p>この版でできること：仕入れ元判定、手入力による利益計算、仕入れ上限の逆算、商品保存。</p><p>未対応：フリマの商品情報自動取得、eBay成約データの自動取得、関税自動判定。</p><p class="notice">手数料は仮設定です。実際のeBay課金対象額、広告費、返品リスク、税金等は別途確認してください。</p></div></section>
+<footer>データはこの端末・ブラウザ内に保存されます。ほかの端末とは同期されません。</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id), n=id=>Math.max(0,Number($(id).value)||0), yen=x=>'¥'+Math.round(x).toLocaleString('ja-JP');
+let last=null;
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('on',x.id===b.dataset.page));if(b.dataset.page==='savedPage')render();}));
+function detect(){let s='未判定';try{let h=new URL($('url').value).hostname.toLowerCase();if(h.includes('mercari.com'))s='メルカリ';else if(h.includes('paypayfleamarket.yahoo.co.jp'))s='Yahoo!フリマ';else if(h.includes('auctions.yahoo.co.jp'))s='ヤフオク!';else if(h.includes('fril.jp'))s='ラクマ';else if(h.includes('amazon.'))s='Amazon';else if(h.includes('rakuten.co.jp'))s='楽天市場';}catch(e){s='URLを確認';}$('source').textContent=s;return s;}
+$('detect').addEventListener('click',detect);
+function calc(){let sales=n('usd')*n('fx'),fee=sales*n('fee')/100,tariff=$('tariffMode').value==='seller'?n('tariff'):0,expenses=fee+n('payment')+n('shipping')+n('other')+tariff,profit=sales-expenses-n('buy'),cap=sales-expenses-5000,margin=sales?profit/sales*100:0;last={sales,fee,expenses,profit,cap,margin};$('profit').textContent=yen(profit);$('profit').className='big '+(profit>=5000?'good':'bad');$('limit').innerHTML='<b>'+yen(cap)+'</b>';$('margin').innerHTML='<b>'+margin.toFixed(1)+'%</b>';$('breakdown').textContent=`売上 ${yen(sales)} − 手数料 ${yen(fee)} − その他費用 ${yen(expenses)} − 仕入れ ${yen(n('buy'))}`;let d=profit>=5000&&n('buy')<=30000?'仕入れ候補':cap>=0&&n('buy')<=cap?'予算条件を確認':'見送り';$('decision').textContent=d;$('decision').style.color=d==='仕入れ候補'?'#087647':d==='見送り'?'#b42318':'#925400';return last;}
+$('calculate').addEventListener('click',calc);
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+$('save').addEventListener('click',()=>{let c=last||calc(),a=JSON.parse(localStorage.getItem('scouterItems')||'[]');a.unshift({id:Date.now(),name:$('name').value||'商品名未入力',source:detect(),buy:n('buy'),profit:c.profit,decision:$('decision').textContent,url:$('url').value});localStorage.setItem('scouterItems',JSON.stringify(a));alert('保存しました');});
+function render(){let a=JSON.parse(localStorage.getItem('scouterItems')||'[]');$('savedList').innerHTML=a.length?a.map(x=>`<div class="saveditem"><b>${esc(x.name)}</b><br><span class="muted">${esc(x.source)} · 仕入れ ${yen(x.buy)} · 利益 ${yen(x.profit)} · ${esc(x.decision)}</span><br>${x.url?`<a href="${esc(x.url)}" target="_blank" rel="noopener">商品ページを開く</a>`:''} <button class="danger" onclick="del(${x.id})">削除</button></div>`).join(''):'保存商品はありません。';}
+window.del=id=>{let a=JSON.parse(localStorage.getItem('scouterItems')||'[]').filter(x=>x.id!==id);localStorage.setItem('scouterItems',JSON.stringify(a));render();};
+$('clear').addEventListener('click',()=>{if(confirm('保存商品をすべて削除しますか？')){localStorage.removeItem('scouterItems');render();}});
+$('reset').addEventListener('click',()=>{['url','name'].forEach(x=>$(x).value='');$('buy').value=10000;$('usd').value=180;$('fx').value=150;$('fee').value=15;$('payment').value=500;$('shipping').value=2500;$('other').value=500;$('tariff').value=0;$('tariffMode').value='buyer';$('source').textContent='未判定';last=null;$('profit').textContent='—';$('limit').innerHTML='<b>—</b>';$('margin').innerHTML='<b>—</b>';$('decision').textContent='未計算';});
+if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+calc();
+</script></body></html>
