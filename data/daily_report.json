@@ -1,0 +1,18 @@
+{
+  "generated_at": "2026-11-27T23:40:25.230513+00:00",
+  "budget_yen": 30000,
+  "target_profit_yen": 5000,
+  "items": [],
+  "warnings": [
+    "腕時計: eBay category ID未設定",
+    "カメラ・光学機器: eBay category ID未設定",
+    "オーディオ: eBay category ID未設定",
+    "天体望遠鏡: eBay category ID未設定"
+  ],
+  "limitations": [
+    "BEST_SELLINGは人気商品シグナルであり、実売履歴や販売率そのものではありません。",
+    "Marketplace Insightsの販売履歴APIは限定提供です。",
+    "国内フリマは検索リンクのみ。自動スクレイピングは行いません。",
+    "国内仕入れ価格・商品状態を確認するまで利益は確定できません。"
+  ]
+}
