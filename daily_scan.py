@@ -31,7 +31,7 @@ def main():
   except Exception as e:warnings.append(f'{cat["name"]}: {type(e).__name__}: {e}')
  out={"generated_at":datetime.now(timezone.utc).isoformat(),"budget_yen":C["max_purchase_yen"],"target_profit_yen":C["target_profit_yen"],"items":items,"warnings":warnings,
  "limitations":["BEST_SELLINGは人気商品シグナルであり、実売履歴や販売率そのものではありません。","Marketplace Insightsの販売履歴APIは限定提供です。","国内フリマは検索リンクのみ。自動スクレイピングは行いません。","国内仕入れ価格・商品状態を確認するまで利益は確定できません。"]}
- (R/"data").mkdir(parents=True, exist_ok=True)
- (R/"data/daily_report.json").write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding="utf-8")
- print("report items:",len(items),"warnings:",len(warnings))
+  (R/"data").mkdir(parents=True, exist_ok=True)
+  (R/"data/daily_report.json").write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding="utf-8")
+  print("report items:",len(items),"warnings:",len(warnings))
 if __name__=="__main__":main()
