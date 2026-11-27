@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-11-27T23:47:17.356549+00:00",
+  "generated_at": "2026-11-27T23:51:02.430385+00:00",
   "budget_yen": 30000,
   "target_profit_yen": 5000,
   "items": [],
   "warnings": [
-    "腕時計: eBay category ID未設定",
-    "カメラ・光学機器: eBay category ID未設定",
-    "オーディオ: eBay category ID未設定",
-    "天体望遠鏡: eBay category ID未設定"
+    "腕時計: HTTP 403 {\"errors\":[{\"errorId\":1100,\"domain\":\"ACCESS\",\"category\":\"REQUEST\",\"message\":\"Access denied\",\"longMessage\":\"Insufficient permissions to fulfill the request.\"}]}",
+    "カメラ・光学機器: HTTP 403 {\"errors\":[{\"errorId\":1100,\"domain\":\"ACCESS\",\"category\":\"REQUEST\",\"message\":\"Access denied\",\"longMessage\":\"Insufficient permissions to fulfill the request.\"}]}",
+    "オーディオ: HTTP 403 {\"errors\":[{\"errorId\":1100,\"domain\":\"ACCESS\",\"category\":\"REQUEST\",\"message\":\"Access denied\",\"longMessage\":\"Insufficient permissions to fulfill the request.\"}]}",
+    "天体望遠鏡: HTTP 403 {\"errors\":[{\"errorId\":1100,\"domain\":\"ACCESS\",\"category\":\"REQUEST\",\"message\":\"Access denied\",\"longMessage\":\"Insufficient permissions to fulfill the request.\"}]}"
   ],
   "limitations": [
     "BEST_SELLINGは人気商品シグナルであり、実売履歴や販売率そのものではありません。",
